@@ -306,7 +306,14 @@ __nolocale_asprintf(char** __ret,
 {
     va_list __ap;
     va_start(__ap, __format);
-    int __result = vasprintf(__ret, __format, __ap);
+	int __result;
+#ifdef _WIN32
+	*__ret = (char*)malloc(4096);
+	__result = vsprintf(*__ret, __format, __ap);
+	*__ret = (char*)realloc(*__ret, __result + 1);
+#else
+	__result = vasprintf(__ret, __format, __ap);
+#endif
     va_end(__ap);
     return __result;
 }
