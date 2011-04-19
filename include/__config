@@ -13,6 +13,12 @@
 
 #pragma GCC system_header
 
+#ifdef __MINGW32__
+#include <yvals.h>
+#undef _STD
+#undef _C2
+#endif
+
 #define _LIBCPP_VERSION 1000
 
 #define _LIBCPP_ABI_VERSION 1
