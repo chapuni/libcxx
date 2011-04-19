@@ -115,22 +115,22 @@ public:
 
 enum class errc
 {
-    address_family_not_supported,       // EAFNOSUPPORT
-    address_in_use,                     // EADDRINUSE
-    address_not_available,              // EADDRNOTAVAIL
-    already_connected,                  // EISCONN
+//    address_family_not_supported,       // EAFNOSUPPORT
+//    address_in_use,                     // EADDRINUSE
+//    address_not_available,              // EADDRNOTAVAIL
+//    already_connected,                  // EISCONN
     argument_list_too_long,             // E2BIG
     argument_out_of_domain,             // EDOM
     bad_address,                        // EFAULT
     bad_file_descriptor,                // EBADF
-    bad_message,                        // EBADMSG
+//    bad_message,                        // EBADMSG
     broken_pipe,                        // EPIPE
-    connection_aborted,                 // ECONNABORTED
-    connection_already_in_progress,     // EALREADY
-    connection_refused,                 // ECONNREFUSED
-    connection_reset,                   // ECONNRESET
+//    connection_aborted,                 // ECONNABORTED
+//    connection_already_in_progress,     // EALREADY
+//    connection_refused,                 // ECONNREFUSED
+//    connection_reset,                   // ECONNRESET
     cross_device_link,                  // EXDEV
-    destination_address_required,       // EDESTADDRREQ
+//    destination_address_required,       // EDESTADDRREQ
     device_or_resource_busy,            // EBUSY
     directory_not_empty,                // ENOTEMPTY
     executable_format_error,            // ENOEXEC
@@ -138,8 +138,8 @@ enum class errc
     file_too_large,                     // EFBIG
     filename_too_long,                  // ENAMETOOLONG
     function_not_supported,             // ENOSYS
-    host_unreachable,                   // EHOSTUNREACH
-    identifier_removed,                 // EIDRM
+//    host_unreachable,                   // EHOSTUNREACH
+//    identifier_removed,                 // EIDRM
     illegal_byte_sequence,              // EILSEQ
     inappropriate_io_control_operation, // ENOTTY
     interrupted,                        // EINTR
@@ -147,16 +147,16 @@ enum class errc
     invalid_seek,                       // ESPIPE
     io_error,                           // EIO
     is_a_directory,                     // EISDIR
-    message_size,                       // EMSGSIZE
-    network_down,                       // ENETDOWN
-    network_reset,                      // ENETRESET
-    network_unreachable,                // ENETUNREACH
-    no_buffer_space,                    // ENOBUFS
+//    message_size,                       // EMSGSIZE
+//    network_down,                       // ENETDOWN
+//    network_reset,                      // ENETRESET
+//    network_unreachable,                // ENETUNREACH
+//    no_buffer_space,                    // ENOBUFS
     no_child_process,                   // ECHILD
-    no_link,                            // ENOLINK
+//    no_link,                            // ENOLINK
     no_lock_available,                  // ENOLCK
     no_message_available,               // ENODATA
-    no_message,                         // ENOMSG
+//    no_message,                         // ENOMSG
     no_protocol_option,                 // ENOPROTOOPT
     no_space_on_device,                 // ENOSPC
     no_stream_resources,                // ENOSR
@@ -246,22 +246,42 @@ struct _LIBCPP_VISIBLE is_error_condition_enum
 struct errc
 {
 enum _ {
+#ifdef EAFNOSUPPORT
     address_family_not_supported        = EAFNOSUPPORT,
+#endif
+#ifdef EADDRINUSE
     address_in_use                      = EADDRINUSE,
+#endif
+#ifdef EADDRNOTAVAIL
     address_not_available               = EADDRNOTAVAIL,
+#endif
+#ifdef EISCONN
     already_connected                   = EISCONN,
+#endif
     argument_list_too_long              = E2BIG,
     argument_out_of_domain              = EDOM,
     bad_address                         = EFAULT,
     bad_file_descriptor                 = EBADF,
+#ifdef EBADMSG
     bad_message                         = EBADMSG,
+#endif
     broken_pipe                         = EPIPE,
+#ifdef ECONNABORTED
     connection_aborted                  = ECONNABORTED,
+#endif
+#ifdef EALREADY
     connection_already_in_progress      = EALREADY,
+#endif
+#ifdef ECONNREFUSED
     connection_refused                  = ECONNREFUSED,
+#endif
+#ifdef ECONNRESET
     connection_reset                    = ECONNRESET,
+#endif
     cross_device_link                   = EXDEV,
+#ifdef EDESTADDRREQ
     destination_address_required        = EDESTADDRREQ,
+#endif
     device_or_resource_busy             = EBUSY,
     directory_not_empty                 = ENOTEMPTY,
     executable_format_error             = ENOEXEC,
@@ -269,8 +289,12 @@ enum _ {
     file_too_large                      = EFBIG,
     filename_too_long                   = ENAMETOOLONG,
     function_not_supported              = ENOSYS,
+#ifdef EHOSTUNREACH
     host_unreachable                    = EHOSTUNREACH,
+#endif
+#ifdef EIDRM
     identifier_removed                  = EIDRM,
+#endif
     illegal_byte_sequence               = EILSEQ,
     inappropriate_io_control_operation  = ENOTTY,
     interrupted                         = EINTR,
@@ -278,21 +302,37 @@ enum _ {
     invalid_seek                        = ESPIPE,
     io_error                            = EIO,
     is_a_directory                      = EISDIR,
+#ifdef EMSGSIZE
     message_size                        = EMSGSIZE,
+#endif
+#ifdef ENETDOWN
     network_down                        = ENETDOWN,
+#endif
+#ifdef ENETRESET
     network_reset                       = ENETRESET,
+#endif
+#ifdef ENETUNREACH
     network_unreachable                 = ENETUNREACH,
+#endif
+#ifdef ENOBUFS
     no_buffer_space                     = ENOBUFS,
+#endif
     no_child_process                    = ECHILD,
+#ifdef ENOLINK
     no_link                             = ENOLINK,
+#endif
     no_lock_available                   = ENOLCK,
+#ifdef ENOMSG
 #ifdef ENODATA
     no_message_available                = ENODATA,
 #else
     no_message_available                = ENOMSG,
 #endif
     no_message                          = ENOMSG,
+#endif
+#ifdef ENOPROTOOPT,
     no_protocol_option                  = ENOPROTOOPT,
+#endif
     no_space_on_device                  = ENOSPC,
 #ifdef ENOSR
     no_stream_resources                 = ENOSR,
@@ -304,24 +344,42 @@ enum _ {
     no_such_file_or_directory           = ENOENT,
     no_such_process                     = ESRCH,
     not_a_directory                     = ENOTDIR,
+#ifdef ENOTSOCK
     not_a_socket                        = ENOTSOCK,
+#endif
 #ifdef ENOSTR
     not_a_stream                        = ENOSTR,
 #else
     not_a_stream                        = EINVAL,
 #endif
+#ifdef ENOTCONN
     not_connected                       = ENOTCONN,
+#endif
     not_enough_memory                   = ENOMEM,
+#ifdef ENOTSUP
     not_supported                       = ENOTSUP,
+#endif
+#ifdef ECANCELED
     operation_canceled                  = ECANCELED,
+#endif
+#ifdef EINPROGRESS
     operation_in_progress               = EINPROGRESS,
+#endif
     operation_not_permitted             = EPERM,
+#ifdef EOPNOTSUPP
     operation_not_supported             = EOPNOTSUPP,
+#endif
+#ifdef EWOULDBLOCK
     operation_would_block               = EWOULDBLOCK,
+#endif
     owner_dead                          = EOWNERDEAD,
     permission_denied                   = EACCES,
+#ifdef EPROTO
     protocol_error                      = EPROTO,
+#endif
+#ifdef EPROTONOSUPPORT
     protocol_not_supported              = EPROTONOSUPPORT,
+#endif
     read_only_file_system               = EROFS,
     resource_deadlock_would_occur       = EDEADLK,
     resource_unavailable_try_again      = EAGAIN,
@@ -329,17 +387,27 @@ enum _ {
     state_not_recoverable               = ENOTRECOVERABLE,
 #ifdef ETIME
     stream_timeout                      = ETIME,
-#else
+#elif defined(ETIMEDOUT)
     stream_timeout                      = ETIMEDOUT,
 #endif
+#ifdef ETXTBSY
     text_file_busy                      = ETXTBSY,
+#endif
+#ifdef ETIMEDOUT
     timed_out                           = ETIMEDOUT,
+#endif
     too_many_files_open_in_system       = ENFILE,
     too_many_files_open                 = EMFILE,
     too_many_links                      = EMLINK,
+#ifdef ELOOP
     too_many_symbolic_link_levels       = ELOOP,
+#endif
+#ifdef EOVERFLOW
     value_too_large                     = EOVERFLOW,
-    wrong_protocol_type                 = EPROTOTYPE
+#endif
+#ifdef EPROTOTYPE
+    wrong_protocol_type                 = EPROTOTYPE,
+#endif
 };
 
     _ __v_;
