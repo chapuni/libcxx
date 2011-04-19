@@ -302,7 +302,7 @@ locale::operator()(const basic_string<_CharT, _Traits, _Allocator>& __x,
 class _LIBCPP_VISIBLE ctype_base
 {
 public:
-    typedef __uint32_t mask;
+    typedef std::uint32_t mask;
 
 #if __APPLE__
     static const mask space  = _CTYPE_S;
