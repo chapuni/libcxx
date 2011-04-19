@@ -19,7 +19,21 @@
 #include <cstdint>
 #include <cctype>
 #include <locale.h>
+#ifdef __MINGW32__
+typedef _locale_t locale_t;
+
+#include <xlocinfo.h>
+#define LC_COLLATE_MASK _M_COLLATE
+#define LC_CTYPE_MASK _M_CTYPE
+#define LC_MONETARY_MASK _M_MONETARY
+#define LC_NUMERIC_MASK _M_NUMERIC
+#define LC_TIME_MASK _M_TIME
+#define LC_MESSAGES_MASK _M_MESSAGES
+#define LC_ALL_MASK _M_ALL
+
+#else
 #include <xlocale.h>
+#endif
 
 #pragma GCC system_header
 
@@ -315,6 +329,17 @@ public:
     static const mask punct  = _CTYPE_P;
     static const mask xdigit = _CTYPE_X;
     static const mask blank  = _CTYPE_B;
+#elif defined(__MINGW32__)
+    static const mask space  = _SPACE;
+    static const mask print  = (_BLANK|_PUNCT|_ALPHA|_DIGIT);
+    static const mask cntrl  = _CONTROL;
+    static const mask upper  = _UPPER;
+    static const mask lower  = _LOWER;
+    static const mask alpha  = _ALPHA;
+    static const mask digit  = _DIGIT;
+    static const mask punct  = _PUNCT;
+    static const mask xdigit = _HEX;
+    static const mask blank  = _BLANK;
 #else  // __APPLE__
     static const mask space  = _ISspace;
     static const mask print  = _ISprint;
