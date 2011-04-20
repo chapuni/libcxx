@@ -186,7 +186,10 @@ template <class charT> class messages_byname;
 #endif
 #include <cstdlib>
 #include <ctime>
+
+#ifndef _WIN32
 #include <nl_types.h>
+#endif
 
 #pragma GCC system_header
 
@@ -3565,10 +3568,14 @@ template <class _CharT>
 typename messages<_CharT>::catalog
 messages<_CharT>::do_open(const basic_string<char>& __nm, const locale&) const
 {
+#ifdef __MINGW32__
+    return -1;
+#else
     catalog __cat = reinterpret_cast<catalog>(catopen(__nm.c_str(), NL_CAT_LOCALE));
     if (__cat != -1)
         __cat = static_cast<catalog>((static_cast<size_t>(__cat) >> 1));
     return __cat;
+#endif
 }
 
 template <class _CharT>
@@ -3576,6 +3583,10 @@ typename messages<_CharT>::string_type
 messages<_CharT>::do_get(catalog __c, int __set, int __msgid,
                          const string_type& __dflt) const
 {
+#ifdef __MINGW32__
+    string_type __w;
+	return __w;
+#else
     string __ndflt;
     __narrow_to_utf8<sizeof(char_type)*__CHAR_BIT__>()(back_inserter(__ndflt),
                                                        __dflt.c_str(),
@@ -3588,16 +3599,19 @@ messages<_CharT>::do_get(catalog __c, int __set, int __msgid,
     __widen_from_utf8<sizeof(char_type)*__CHAR_BIT__>()(back_inserter(__w),
                                                         __n, __n + strlen(__n));
     return __w;
+#endif
 }
 
 template <class _CharT>
 void
 messages<_CharT>::do_close(catalog __c) const
 {
+#ifndef __MINGW32__
     if (__c != -1)
         __c <<= 1;
     nl_catd __cat = reinterpret_cast<nl_catd>(__c);
     catclose(__cat);
+#endif
 }
 
 extern template class messages<char>;
