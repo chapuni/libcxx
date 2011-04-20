@@ -7,10 +7,16 @@
 //
 //===----------------------------------------------------------------------===//
 
+#define MINGW_HAS_SECURE_API
+
 #include "string"
 #include "cstdlib"
 #include "cwchar"
 #include "cerrno"
+
+#ifdef _WIN32
+#define swprintf swprintf_s
+#endif
 
 _LIBCPP_BEGIN_NAMESPACE_STD
 
