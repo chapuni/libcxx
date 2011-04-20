@@ -17,6 +17,7 @@
 #include <yvals.h>
 #undef _STD
 #undef _C2
+#define _LIBCPP_VISIBILITY_TAG 0
 #endif
 
 #define _LIBCPP_VERSION 1000
