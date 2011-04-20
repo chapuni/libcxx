@@ -576,12 +576,18 @@ locale::id::__init()
 
 static inline
 locale_t newlocale(int m, const char *l, locale_t b) {
+#if 0
   return _create_locale(LC_ALL, l);
+#else
+  return 0;
+#endif
 }
 
 static inline
 void freelocale(locale_t p) {
+#if 0 // why!
   _free_locale(p);
+#endif
 }
 
 collate_byname<char>::collate_byname(const char* n, size_t refs)
