@@ -12,7 +12,10 @@
 #include "vector"
 #include "future"
 #include <sys/types.h>
+#ifdef __MINGW32__
+#else
 #include <sys/sysctl.h>
+#endif
 
 _LIBCPP_BEGIN_NAMESPACE_STD
 

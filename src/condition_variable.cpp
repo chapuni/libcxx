@@ -57,8 +57,10 @@ condition_variable::__do_timed_wait(unique_lock<mutex>& lk,
     ts.tv_sec = static_cast<decltype(ts.tv_sec)>(s.count());
     ts.tv_nsec = static_cast<decltype(ts.tv_nsec)>((d - s).count());
     int ec = pthread_cond_timedwait(&__cv_, lk.mutex()->native_handle(), &ts);
+#ifndef __MINGW32__
     if (ec != 0 && ec != ETIMEDOUT)
         __throw_system_error(ec, "condition_variable timed_wait failed");
+#endif
 }
 
 void

@@ -14,7 +14,35 @@
 #include <__config>
 #include <chrono>
 #include <system_error>
+#ifdef __MINGW32__
+typedef unsigned pthread_t;
+typedef unsigned pthread_mutex_t;
+typedef unsigned pthread_mutexattr_t;
+typedef unsigned pthread_cond_t;
+typedef unsigned pthread_key_t;
+#define PTHREAD_MUTEX_INITIALIZER 0
+#define PTHREAD_COND_INITIALIZER 0
+#define PTHREAD_MUTEX_RECURSIVE 0
+#define pthread_mutex_init(a,b) (*(a) = 0, -1)
+#define pthread_mutex_destroy(a) (-1)
+#define pthread_mutex_lock(a) (-1)
+#define pthread_mutex_trylock(a) (-1)
+#define pthread_mutex_unlock(a) (-1)
+#define pthread_mutexattr_settype(a,b) (*(a) = (b), -1)
+#define pthread_mutexattr_init(a) (*(a) = 0, -1)
+#define pthread_mutexattr_destroy(a) (-1)
+#define pthread_self() (-1)
+#define pthread_equal(a,b) (0)
+#define pthread_getspecific(a) ((void*)0)
+#define pthread_cond_destroy(a) (-1)
+#define pthread_cond_signal(a) (-1)
+#define pthread_cond_broadcast(a) (-1)
+#define pthread_cond_wait(a,b) (-1)
+#define pthread_cond_timedwait(a,b,c) (-1)
+#define sched_yield() (-1)
+#else
 #include <pthread.h>
+#endif
 
 #pragma GCC system_header
 

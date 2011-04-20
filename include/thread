@@ -95,7 +95,15 @@ void sleep_for(const chrono::duration<Rep, Period>& rel_time);
 #include <system_error>
 #include <chrono>
 #include <__mutex_base>
+#ifdef __MINGW32__
+#define pthread_key_delete(a) (-1)
+#define pthread_join(a,b) (-1)
+#define pthread_detach(a) (-1)
+#define nanosleep(a,b) (-1)
+#define pthread_key_create(a,b) (-1)
+#else
 #include <pthread.h>
+#endif
 
 #pragma GCC system_header
 
