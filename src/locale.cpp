@@ -574,6 +574,16 @@ locale::id::__init()
 
 // template <> class collate_byname<char>
 
+static inline
+locale_t newlocale(int m, const char *l, locale_t b) {
+  return _create_locale(LC_ALL, l);
+}
+
+static inline
+void freelocale(locale_t p) {
+  _free_locale(p);
+}
+
 collate_byname<char>::collate_byname(const char* n, size_t refs)
     : collate<char>(refs),
       __l(newlocale(LC_ALL_MASK, n, 0))
