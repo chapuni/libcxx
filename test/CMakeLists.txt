@@ -32,7 +32,7 @@ if(PYTHONINTERP_FOUND)
     ${CMAKE_CURRENT_BINARY_DIR}/lit.site.cfg
     @ONLY)
 
-  add_custom_target(check
+  add_custom_target(libcxx.check
     COMMAND ${PYTHON_EXECUTABLE}
             ${LIT_EXECUTABLE}
             ${LIT_ARGS}
@@ -40,5 +40,5 @@ if(PYTHONINTERP_FOUND)
     DEPENDS
     COMMENT "Running libcxx tests")
 else()
-  message(WARNING "Could not find Python, no check target will be available!")
+  message(WARNING "Could not find Python, no libcxx.check target will be available!")
 endif()
