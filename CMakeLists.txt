@@ -5,10 +5,10 @@
 #===============================================================================
 
 project(libcxx CXX C)
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.6.4)
 
 set(PACKAGE_NAME libcxx)
-set(PACKAGE_VERSION trunk-svn)
+set(PACKAGE_VERSION lll)
 set(PACKAGE_STRING "${PACKAGE_NAME} ${PACKAGE_VERSION}")
 set(PACKAGE_BUGREPORT "llvmbugs@cs.uiuc.edu")
 
