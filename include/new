@@ -90,6 +90,18 @@ _LIBCPP_VISIBLE new_handler get_new_handler() throw();
 
 }  // std
 
+#if __APPLE__
+    #include <cxxabi.h>
+    // On Darwin, there are two STL shared libraries and a lower level ABI
+    // shared libray.  The global holding the current new handler is
+    // in the ABI library and named __cxa_new_handler.
+    #define __new_handler __cxxabiapple::__cxa_new_handler
+#else  // __APPLE__
+    _LIBCPP_BEGIN_NAMESPACE_STD
+        extern ::std::new_handler __new_handler;
+    _LIBCPP_END_NAMESPACE_STD
+#endif
+
 _LIBCPP_VISIBLE void* operator new(std::size_t) throw(std::bad_alloc);
 _LIBCPP_VISIBLE void* operator new(std::size_t, const std::nothrow_t&) throw();
 _LIBCPP_VISIBLE void  operator delete(void*) throw();

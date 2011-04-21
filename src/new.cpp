@@ -18,7 +18,9 @@
     // in the ABI library and named __cxa_new_handler.
     #define __new_handler __cxxabiapple::__cxa_new_handler
 #else  // __APPLE__
-    static std::new_handler __new_handler;
+    _LIBCPP_BEGIN_NAMESPACE_STD
+        ::std::new_handler __new_handler;
+    _LIBCPP_END_NAMESPACE_STD
 #endif
 
 // Implement all new and delete operators as weak definitions
