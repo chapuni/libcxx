@@ -14,12 +14,10 @@ endif()
 if (LIBCXX_ENABLE_SHARED)
   add_library(cxx SHARED
     ${sources}
-    ${headers}
     )
 else()
   add_library(cxx STATIC
     ${sources}
-    ${headers}
     )
 endif()
 
@@ -50,8 +48,10 @@ install(TARGETS cxx
   )
 
 install(DIRECTORY ../include/
-  DESTINATION include/c++/v1
+  DESTINATION include/libcxx/v1
   FILES_MATCHING
   PATTERN "*"
   PATTERN ".svn" EXCLUDE
+  PATTERN ".git" EXCLUDE
   )
+
