@@ -1702,11 +1702,17 @@ num_put<_CharT, _OutputIterator>::do_put(iter_type __s, ios_base& __iob,
 template <class _CharT, class _OutputIterator>
 _OutputIterator
 num_put<_CharT, _OutputIterator>::do_put(iter_type __s, ios_base& __iob,
-                                         char_type __fl, long double __v) const
+                                         char_type __fl, long double __lv) const
 {
     // Stage 1 - Get number in narrow char
     char __fmt[8] = {'%', 0};
+#ifdef _WIN32
+    const char* __len = "";
+    double __v = __lv;
+#else
     const char* __len = "L";
+    long double __v = __lv;
+#endif
     bool __specify_precision = this->__format_float(__fmt+1, __len, __iob.flags());
     const unsigned __nbuf = 30;
     char __nar[__nbuf];
