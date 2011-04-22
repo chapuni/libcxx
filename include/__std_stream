@@ -288,12 +288,12 @@ __stdoutbuf<_CharT>::sync()
         __r = __cv_->unshift(__st_, __extbuf,
                                     __extbuf + sizeof(__extbuf),
                                     __extbe);
+        if (__r == codecvt_base::error)
+            return -1;
         size_t __nmemb = static_cast<size_t>(__extbe - __extbuf);
         if (fwrite(__extbuf, 1, __nmemb, __file_) != __nmemb)
             return -1;
     } while (__r == codecvt_base::partial);
-    if (__r == codecvt_base::error)
-        return -1;
     if (fflush(__file_))
         return -1;
     return 0;
