@@ -173,6 +173,11 @@ typedef basic_fstream<wchar_t> wfstream;
 
 #pragma GCC system_header
 
+#ifdef _WIN32
+#define fseeko fseek
+#define ftello ftell
+#endif
+
 _LIBCPP_BEGIN_NAMESPACE_STD
 
 template <class _CharT, class _Traits>
