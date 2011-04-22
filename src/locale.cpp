@@ -21,7 +21,7 @@
 #ifdef __MINGW32__
 #define iswctype_l _iswctype_l
 #define strcoll_l _strcoll_l
-#define strftime_l _strftime_l
+#define strftime_l(a,b,c,d,e) strftime(a,b,c,d)
 #define strxfrm_l _strxfrm_l
 #define tolower_l _tolower_l
 #define toupper_l _toupper_l
