@@ -1388,6 +1388,9 @@ codecvt<wchar_t, char, mbstate_t>::do_unshift(state_type& st,
     for (extern_type* p = tmp; n; --n)  // write it
         *to_nxt++ = *p++;
     return ok;
+#elif defined(_WIN32)
+    to_nxt = to;
+    return noconv;
 #else
     return error;
 #endif
