@@ -30,7 +30,7 @@ void test_to_ulong()
                            max};
     for (std::size_t i = 0; i < sizeof(tests)/sizeof(tests[0]); ++i)
     {
-        std::size_t j = tests[i];
+        unsigned long j = tests[i];
         std::bitset<N> v(j);
         assert(j == v.to_ulong());
     }
