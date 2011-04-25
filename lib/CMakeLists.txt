@@ -32,7 +32,7 @@ append_if(libraries LIBCXX_HAS_GCC_S_LIB gcc_s)
 target_link_libraries(cxx ${libraries})
 
 # Setup flags.
-append_if(compile_flags LIBCXX_HAS_FPIC_FLAG -fPIC)
+#append_if(compile_flags LIBCXX_HAS_FPIC_FLAG -fPIC)
 append_if(link_flags LIBCXX_HAS_NODEFAULTLIBS_FLAG -nodefaultlibs)
 
 set_target_properties(cxx
