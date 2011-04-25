@@ -77,6 +77,9 @@ std::terminate()
 
 bool std::uncaught_exception() throw()
 {
+#ifdef _LIBCPP_NO_EXCEPTIONS
+    return false;
+#endif
 #if __APPLE__
     // on Darwin, there is a helper function so __cxa_get_globals is private
     return __cxxabiapple::__cxa_uncaught_exception();
