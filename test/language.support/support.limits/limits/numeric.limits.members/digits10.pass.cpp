@@ -34,7 +34,11 @@ int main()
     test<char, 2>();
     test<signed char, 2>();
     test<unsigned char, 2>();
+#ifdef _WIN32
+    test<wchar_t, 4>();
+#else
     test<wchar_t, 9>();
+#endif
 #ifndef _LIBCPP_HAS_NO_UNICODE_CHARS
     test<char16_t, 4>();
     test<char32_t, 9>();

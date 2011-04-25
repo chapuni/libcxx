@@ -34,8 +34,13 @@ int main()
     static_assert((std::is_same<std::make_signed<unsigned long>::type, long>::value), "");
     static_assert((std::is_same<std::make_signed<long long>::type, signed long long>::value), "");
     static_assert((std::is_same<std::make_signed<unsigned long long>::type, signed long long>::value), "");
+#if _WIN32
+    static_assert((std::is_same<std::make_signed<wchar_t>::type, short>::value), "");
+    static_assert((std::is_same<std::make_signed<const wchar_t>::type, const short>::value), "");
+#else
     static_assert((std::is_same<std::make_signed<wchar_t>::type, int>::value), "");
     static_assert((std::is_same<std::make_signed<const wchar_t>::type, const int>::value), "");
+#endif
     static_assert((std::is_same<std::make_signed<const Enum>::type, const int>::value), "");
     static_assert((std::is_same<std::make_signed<BigEnum>::type,
                    std::conditional<sizeof(long) == 4, long long, long>::type>::value), "");

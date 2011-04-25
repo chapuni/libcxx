@@ -30,7 +30,11 @@ int main()
     test<char, std::numeric_limits<char>::is_signed ? 7 : 8>();
     test<signed char, 7>();
     test<unsigned char, 8>();
+#if _WIN32
+    test<wchar_t, 16>();
+#else
     test<wchar_t, std::numeric_limits<wchar_t>::is_signed ? 31 : 32>();
+#endif
 #ifndef _LIBCPP_HAS_NO_UNICODE_CHARS
     test<char16_t, 16>();
     test<char32_t, 32>();
